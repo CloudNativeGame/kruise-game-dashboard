@@ -1,0 +1,51 @@
+apiVersion: kubesphere.io/v1alpha1
+name: kruise-game-dashboard
+version: 0.1.0
+displayName:
+  zh: OKG游戏运维控制台
+  en: OKG Game Ops Console
+description:
+  zh: 对游戏服进行批量管理与定向管理
+  en: Batch Management & Directed Management to GameServers
+category: other
+keywords:
+  - other
+home: https://openkruise.io/kruisegame/introduction
+sources:
+  - https://github.com/openkruise/kruise-game
+kubeVersion: ">=1.19.0-0"
+ksVersion: ">=4.0.0-0"
+maintainers:
+  - name: "CloudNativeGame"
+    email: ""
+    url: ""
+provider:
+  zh:
+    name: "CloudNativeGame"
+    email: ""
+    url: ""
+  en:
+    name: "CloudNativeGame"
+    email: ""
+    url: ""
+staticFileDirectory: static
+icon: ./static/favicon.svg
+screenshots: []
+dependencies:
+  - name: frontend
+    tags:
+    - extension
+# installationMode describes how to install subcharts, it can be HostOnly or Multicluster.
+# In Multicluster mode, the subchart with tag `extension` will only be deployed to the host cluster,
+# and the subchart with tag `agent` will be deployed to all selected clusters.
+installationMode: HostOnly
+# external dependencies example
+#externalDependencies:
+#  - name: a
+#    type: extension
+#    version: ">= 2.6.0"
+#    required: true
+#  - name: b
+#    type: extension
+#    version: ">= 2.2.0"
+#    required: true

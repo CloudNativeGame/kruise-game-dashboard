@@ -1,0 +1,3 @@
+OpenKruiseGame（OKG）是一个面向多云的开源游戏服Kubernetes工作负载，是CNCF工作负载开源项目OpenKruise在游戏领域的子项目，让游戏服的云原生化变得更加简单、快速、稳定。
+
+Kruise-Game-Dashboard 帮助您可视化地对游戏服进行运维管理。

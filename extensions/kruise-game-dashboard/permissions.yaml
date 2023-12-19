@@ -1,0 +1,27 @@
+kind: ClusterRole
+rules:
+  - apiGroups:
+      - 'extensions.kubesphere.io'
+    verbs:
+      - '*'
+    resources:
+      - '*'
+  - apiGroups:
+      - 'game.kruise.io'
+    verbs:
+      - '*'
+    resources:
+      - 'gameservers'
+      - 'gameserversets'
+  - apiGroups:
+      - ""
+    resources:
+      - secrets
+    verbs:
+      - "*"
+  - apiGroups:
+      - ""
+    resources:
+      - configmaps
+    verbs:
+      - '*'

@@ -1,0 +1,3 @@
+OpenKruiseGame (OKG) is a multicloud-oriented, open source Kubernetes workload specialized for game servers. It is a sub-project of the open source workload project OpenKruise of the Cloud Native Computing Foundation (CNCF) in the gaming field. OpenKruiseGame makes the cloud-native transformation of game servers easier, faster, and stabler.
+
+Kruise-Game-Dashboard helps you visually conduct operation and maintenance management of game servers.
