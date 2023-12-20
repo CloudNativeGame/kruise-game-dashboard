@@ -10,19 +10,24 @@ function ClusterOverview(props) {
 
     let params = useParams();
     let clusterId = params.name;
-    let [gameServerSets, setGameServerSets] = useState([]);
-    let [gameServers, setGameServers] = useState([]);
+    const [gameServerSets, setGameServerSets] = useState([]);
+    const [gameServers, setGameServers] = useState([]);
 
 
     // load data from apiServer and set to state
     useEffect(() => {
-        axios.get('clusters/' + clusterId + '/apis/game.kruise.io/v1alpha1/gameserversets')
+        axios.get('/clusters/' + clusterId + '/apis/game.kruise.io/v1alpha1/gameserversets')
             .then(response => {
                 setGameServerSets(response.items)
             });
-        axios.get('clusters/' + clusterId + '/apis/game.kruise.io/v1alpha1/gameservers')
+        axios.get('/clusters/' + clusterId + '/apis/game.kruise.io/v1alpha1/gameservers')
             .then(response => {
-                setGameServers(response.items)
+                console.log(response)
+                if (response.items === undefined) {
+                    setGameServers(response.data.items)
+                } else {
+                    setGameServers(response.items)
+                }
             });
     }, []);
 

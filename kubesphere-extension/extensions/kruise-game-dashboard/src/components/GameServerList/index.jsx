@@ -54,8 +54,13 @@ function GameServerList(props) {
         };
 
         const response = axios.patch(
-            'clusters/' + clusterId + '/apis/game.kruise.io/v1alpha1/namespaces/'+ gsNamespace + '/gameservers/' + gsName,
-            patchData
+            '/clusters/' + clusterId + '/apis/game.kruise.io/v1alpha1/namespaces/'+ gsNamespace + '/gameservers/' + gsName,
+            patchData,
+            {
+                headers: {
+                    'Content-Type': 'application/merge-patch+json'
+                }
+            }
         );
 
         console.log("Successfully updated the field: ", response.data);
