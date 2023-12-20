@@ -1,0 +1,56 @@
+apiVersion: kubesphere.io/v1alpha1
+name: kruise-game-dashboard
+version: 0.1.0
+displayName:
+  zh: OKG Dashboard
+  en: OKG Dashboard
+description:
+  zh: OpenKruiseGame（OKG）是一个面向多云的开源游戏服Kubernetes工作负载，是CNCF工作负载开源项目OpenKruise在游戏领域的子项目，让游戏服的云原生化变得更加简单、快速、稳定。通过OpenKruiseGame Dashboard可对OKG下的游戏服进行可视化运维管理。
+  en: OpenKruiseGame (OKG) is a multicloud-oriented, open source Kubernetes workload specialized for game servers. It is a sub-project of the open source workload project OpenKruise of the Cloud Native Computing Foundation (CNCF) in the gaming field. OpenKruiseGame makes the cloud-native transformation of game servers easier, faster, and stabler. OKG Dashboard helps users visually manage GameServers from OKG.
+category: other
+keywords:
+  - GameServer Dashboard
+  - OpenKruiseGame
+home: https://openkruise.io/kruisegame/introduction
+sources:
+  - https://github.com/CloudNativeGame/kruise-game-dashboard
+kubeVersion: ">=1.19.0-0"
+ksVersion: ">=4.0.0-0"
+maintainers:
+  - name: "CloudNativeGame"
+    email: ""
+    url: "https://github.com/CloudNativeGame"
+provider:
+  zh:
+    name: "云原生游戏开源社区"
+    email: ""
+    url: "https://github.com/CloudNativeGame"
+  en:
+    name: "CloudNativeGame"
+    email: ""
+    url: "https://github.com/CloudNativeGame"
+staticFileDirectory: static
+icon: ./static/favicon.svg
+screenshots:
+  - ./static/screenshots/overview.jpg
+  - ./static/screenshots/gameserverset.jpg
+  - ./static/screenshots/gameserver.jpg
+
+dependencies:
+  - name: frontend
+    tags:
+    - extension
+# installationMode describes how to install subcharts, it can be HostOnly or Multicluster.
+# In Multicluster mode, the subchart with tag `extension` will only be deployed to the host cluster,
+# and the subchart with tag `agent` will be deployed to all selected clusters.
+installationMode: HostOnly
+# external dependencies example
+#externalDependencies:
+#  - name: a
+#    type: extension
+#    version: ">= 2.6.0"
+#    required: true
+#  - name: b
+#    type: extension
+#    version: ">= 2.2.0"
+#    required: true

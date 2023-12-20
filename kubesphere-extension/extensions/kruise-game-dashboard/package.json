@@ -1,0 +1,11 @@
+{
+  "name": "kruise-game-dashboard",
+  "description": "kruise-game-dashboard is an ops dashboard to help game developers to manage game servers on kubernetes with OpenKruiseGame.",
+  "author": "zhongwei.lzw@alibaba-inc.com",
+  "version": "1.0.0",
+  "homepage": "",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ]
+}
