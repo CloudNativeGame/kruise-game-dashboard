@@ -1,6 +1,6 @@
 // Display GameServerSets summary on dashboard
 
-import React, {useCallback, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {Link, useNavigate, useParams} from 'react-router-dom';
 import {
     Banner,
@@ -21,8 +21,13 @@ function GameServerList(props) {
     const params = useParams();
     const tableRef = useRef();
     const clusterId = params.name;
+    const Gameserverset=params.gameserverset || null;
+
+    const continueStackRef = useRef([""]);
+    const [continuetoken, setcontinuetoken] = useState("");
+
     const gsUrl = '/clusters/' + clusterId + '/kruise-game-dashboard/gameservers';
-    const url = '/clusters/' + clusterId + '/apis/game.kruise.io/v1alpha1/gameservers'
+    const url = '/clusters/' + clusterId + `/apis/game.kruise.io/v1alpha1/gameservers?${Gameserverset &&`labelSelector=game.kruise.io/owner-gss%3D${Gameserverset}`}&continue=${continuetoken}`
     const gssDetailUrl = '/clusters/' + clusterId + '/customresources/gameservers.game.kruise.io/resources';
 
     const navigate = useNavigate();
@@ -34,7 +39,8 @@ function GameServerList(props) {
     const [fieldValue, setFieldValue] = useState("");
     const [gsName, setGsName] = useState("");
     const [gsNamespace, setGsNamespace] = useState("");
-
+    const [totaldata,settotaldata]=useState(0)
+    
 
     const openModal = (gsName, gsNamespace)  => {
         setVisible(true);
@@ -67,6 +73,19 @@ function GameServerList(props) {
         setVisible(false)
     };
 
+    
+    
+    useEffect(async ()=>{
+        try {
+            const response = await axios.get('/clusters/' + clusterId + `/apis/game.kruise.io/v1alpha1/gameservers?${Gameserverset&&`labelSelector=game.kruise.io/owner-gss%3D${Gameserverset}`}`);
+            settotaldata(response.items.length)
+        } catch (error) {
+            console.error('Error fetching game servers:', error);
+        }
+
+    },[Gameserverset])
+    
+
 
     const renderItemActions = useItemActions({
         authKey,
@@ -97,15 +116,21 @@ function GameServerList(props) {
         console.log("input change")
     }
 
+    
+    
+
     function formatServerData(data) {
+        const newContinueToken = data.metadata.continue;
+        if (newContinueToken && continueStackRef.current[continueStackRef.current.length - 1] !== newContinueToken) {
+            continueStackRef.current = [...continueStackRef.current, newContinueToken];
+        }
+        
         return {
             items: data.items,
-            totalItems: data.items.length
+            totalItems: totaldata
         }
     }
 
-    function handlePageChange() {
-    }
 
 
     // @ts-ignore
@@ -117,11 +142,13 @@ function GameServerList(props) {
                 sortable: true, // 排序
                 canHide: true, // 隐藏
                 render: (value, record) => (
+                    <>
                     <Field
                         avatar={<Avatar icon={'backup'}/>}
                         label={record.namespace || "-"}
                         value={<Link to={gsUrl}>{record.name}</Link>}
-                    />
+                        />
+                    </>
                 ),
             },
             {
@@ -310,11 +337,15 @@ function GameServerList(props) {
             DP: item.status.deletionPriority,
             UP: item.status.updatePriority,
             images: getImages(item.status.podStatus.containerStatuses),
-            conditions: getConditions(item.status.conditions)
+            conditions: getConditions(item.status.conditions),
         };
-        return row;
+        return row ;
     }, []);
 
+    function renderBatchActions(){
+
+    }
+    
 
     function getItems(items) {
         const kvs = []
@@ -322,7 +353,7 @@ function GameServerList(props) {
             return []
         } else {
             for (let key in items) {
-                if (key.includes("kubectl.kubernetes.io/last-applied-configuration")) {
+                if (key.includes("kubectl.kubernetes.io/last-applied-configuration") ) {
                     continue
                 }
                 kvs.push({
@@ -333,6 +364,7 @@ function GameServerList(props) {
             return kvs
         }
     }
+ 
 
     function getImages(items) {
         const kvs = []
@@ -350,6 +382,9 @@ function GameServerList(props) {
 
         }
         return kvs
+    }
+    function handlePageChange(index,pagelength) {
+        setcontinuetoken(continueStackRef.current[index])
     }
 
     function getConditions(items) {
@@ -399,7 +434,7 @@ function GameServerList(props) {
                 onPageChange={handlePageChange} // 分页变动的参数
                 serverDataFormat={formatServerData} // 修改接口返回的数据
                 format={format} //格式化返回数据
-                // batchActions={renderBatchActions()} // 批量操作
+                // batchActions={renderBatchActions} // 批量操作
                 // toolbarLeft={} //左侧下拉列表
             />
         </>

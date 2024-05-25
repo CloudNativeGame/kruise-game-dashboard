@@ -10,7 +10,7 @@
   "scripts": {
     "dev:client": "ksc dev -u true",
     "dev:server": "ksc-server",
-    "dev": "concurrently -k --raw 'yarn dev:client' 'yarn dev:server'",
+    "dev": "concurrently \"yarn dev:client\" \"yarn dev:server\"",
     "start": "NODE_ENV=production ksc-server",
     "build:dll": "ksc build:dll",
     "build:prod": "ksc build:prod",

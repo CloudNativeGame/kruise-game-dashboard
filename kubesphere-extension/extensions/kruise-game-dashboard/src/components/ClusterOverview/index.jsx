@@ -17,7 +17,7 @@ function ClusterOverview(props) {
     // load data from apiServer and set to state
     useEffect(() => {
         axios.get('/clusters/' + clusterId + '/apis/game.kruise.io/v1alpha1/gameserversets')
-            .then(response => {
+        .then(response => {
                 setGameServerSets(response.items)
             });
         axios.get('/clusters/' + clusterId + '/apis/game.kruise.io/v1alpha1/gameservers')
