@@ -22,10 +22,8 @@ function GameServerList(props) {
     const tableRef = useRef();
     const clusterId = params.name;
     const Gameserverset=params.gameserverset || null;
-
     const continueStackRef = useRef([""]);
     const [continuetoken, setcontinuetoken] = useState("");
-
     const gsUrl = '/clusters/' + clusterId + '/kruise-game-dashboard/gameservers';
     const url = '/clusters/' + clusterId + `/apis/game.kruise.io/v1alpha1/gameservers?${Gameserverset &&`labelSelector=game.kruise.io/owner-gss%3D${Gameserverset}`}&continue=${continuetoken}`
     const gssDetailUrl = '/clusters/' + clusterId + '/customresources/gameservers.game.kruise.io/resources';
@@ -73,8 +71,6 @@ function GameServerList(props) {
         setVisible(false)
     };
 
-    
-    
     useEffect(async ()=>{
         try {
             const response = await axios.get('/clusters/' + clusterId + `/apis/game.kruise.io/v1alpha1/gameservers?${Gameserverset&&`labelSelector=game.kruise.io/owner-gss%3D${Gameserverset}`}`);
@@ -85,8 +81,6 @@ function GameServerList(props) {
 
     },[Gameserverset])
     
-
-
     const renderItemActions = useItemActions({
         authKey,
         params: "", // 传递给操作函数的参数
@@ -117,21 +111,19 @@ function GameServerList(props) {
     }
 
     
-    
-
     function formatServerData(data) {
         const newContinueToken = data.metadata.continue;
         if (newContinueToken && continueStackRef.current[continueStackRef.current.length - 1] !== newContinueToken) {
             continueStackRef.current = [...continueStackRef.current, newContinueToken];
         }
-        
         return {
             items: data.items,
             totalItems: totaldata
         }
     }
 
-
+    function handlePageChange() {
+    }
 
     // @ts-ignore
     const columns = [
@@ -142,13 +134,11 @@ function GameServerList(props) {
                 sortable: true, // 排序
                 canHide: true, // 隐藏
                 render: (value, record) => (
-                    <>
                     <Field
                         avatar={<Avatar icon={'backup'}/>}
                         label={record.namespace || "-"}
                         value={<Link to={gsUrl}>{record.name}</Link>}
-                        />
-                    </>
+                    />
                 ),
             },
             {
@@ -337,9 +327,9 @@ function GameServerList(props) {
             DP: item.status.deletionPriority,
             UP: item.status.updatePriority,
             images: getImages(item.status.podStatus.containerStatuses),
-            conditions: getConditions(item.status.conditions),
+            conditions: getConditions(item.status.conditions)
         };
-        return row ;
+        return row;
     }, []);
 
     function renderBatchActions(){
@@ -353,7 +343,7 @@ function GameServerList(props) {
             return []
         } else {
             for (let key in items) {
-                if (key.includes("kubectl.kubernetes.io/last-applied-configuration") ) {
+                if (key.includes("kubectl.kubernetes.io/last-applied-configuration")) {
                     continue
                 }
                 kvs.push({
@@ -434,7 +424,7 @@ function GameServerList(props) {
                 onPageChange={handlePageChange} // 分页变动的参数
                 serverDataFormat={formatServerData} // 修改接口返回的数据
                 format={format} //格式化返回数据
-                // batchActions={renderBatchActions} // 批量操作
+                // batchActions={renderBatchActions()} // 批量操作
                 // toolbarLeft={} //左侧下拉列表
             />
         </>
