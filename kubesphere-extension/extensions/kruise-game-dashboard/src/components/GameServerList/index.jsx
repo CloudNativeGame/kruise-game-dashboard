@@ -11,6 +11,8 @@ import {
     Menu,
     MenuItem,
     Modal,
+    Text,
+    AutoComplete
 } from '@kubed/components';
 import {Avatar, DataTable, Icon, useItemActions,} from "@ks-console/shared";
 import {Eye, Pen} from "@kubed/icons";
@@ -402,8 +404,8 @@ function GameServerList(props) {
                 visible={visible}
                 onCancel={closeModal}
                 onOk={handleClick}
-            >
-                <Input placeholder="设置opsState..." value={fieldValue} onChange={(e) => setFieldValue(e.target.value)} />
+            > 
+                <AutoComplete placeholder="设置opsState..." style={{ width: "100%" }} options={[{ value: "WaitToBeDeleted" },{ value:"None" },{ value: "Allocated" },{ value: "Maintaining" },{ value: "Kill" } ]}  onChange={(data) => setFieldValue(data)}/>
             </Modal>
 
             <Banner
