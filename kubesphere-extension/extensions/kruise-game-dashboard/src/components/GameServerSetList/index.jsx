@@ -57,7 +57,7 @@ function GameServerSetList(props) {
                 <Field
                     avatar={<Avatar icon={'backup'}/>}
                     label={record.namespace || "-"}
-                    value={<Link to={gsUrl}>{record.name}</Link>}
+                    value={<Link to={`${gsUrl}/${record.name}`}>{record.name}</Link>}
                 />
             ),
         },
