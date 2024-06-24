@@ -39,5 +39,9 @@
   "num_maintaining": "正在维护",
   "num_allocated": "已被分配",
   "num_waitToBeDeleted": "待删除",
-  "gs_overview": "游戏服统计概览"
+  "gs_overview": "游戏服统计概览",
+  "Configuration": "配置",
+  "Projects": "项目",
+  "DeployUnits": "部署单元",
+  "MatchService": "匹配服务"
 }
