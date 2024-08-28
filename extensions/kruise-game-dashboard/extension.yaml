@@ -1,6 +1,6 @@
 apiVersion: kubesphere.io/v1alpha1
 name: kruise-game-dashboard
-version: 0.1.0
+version: 2.0.0
 displayName:
   zh: OKG Dashboard
   en: OKG Dashboard
@@ -32,9 +32,10 @@ provider:
 staticFileDirectory: static
 icon: ./static/favicon.svg
 screenshots:
-  - ./static/screenshots/overview.jpg
-  - ./static/screenshots/gameserverset.jpg
-  - ./static/screenshots/gameserver.jpg
+  - ./static/screenshots/Configuration.png
+  - ./static/screenshots/DeployUnit.png
+  - ./static/screenshots/Project.png
+  - ./static/screenshots/ProjectGameserverset.png
 
 dependencies:
   - name: frontend

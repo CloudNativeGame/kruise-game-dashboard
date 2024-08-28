@@ -1,0 +1,15 @@
+
+apiVersion: extensions.kubesphere.io/v1alpha1
+kind: JSBundle
+metadata:
+  name: kruise-game-dashboard
+spec:
+  rawFrom:
+    url: http://kruise-game-dashboard-frontend.extension-kruise-game-dashboard.svc.cluster.local/dist/index.js
+#    configMapKeyRef:
+#      name: kruise-game-dashboard
+ #     key: index.js
+  #    namespace: default
+status:
+  state: Available
+  link: /dist/kruise-game-dashboard/index.js

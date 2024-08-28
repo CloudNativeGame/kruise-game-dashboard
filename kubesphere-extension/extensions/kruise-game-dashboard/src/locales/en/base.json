@@ -1,4 +1,34 @@
 {
   "name": "Name",
-  "kruise-game-dashboard": "Kruise Game Dashboard"
+  "kruise-game-dashboard": "Kruise Game Dashboard",
+  "Select_DeployUnits":"Select DeployUnits",
+  "Empty_DeployUnits":"No deploy units selected",
+  "Error_Creating_Resource":"Error Creating Resource",
+  "Error_fetching_config":"Error fetching config",
+  "Error_fetching_Deployunit":"Error fetching Deployunit Data",
+  "DeployUnits":"Deploy Units",
+  "deployUnits_description":"The DeployUnit Page table provides a comprehensive view of all DeployUnits, detailing their names, associated GameServerSets and GameServers, and the array of projects within each DeployUnit.",
+  "Error_fetching_cluster":"Error fetching cluster",
+  "Empty_Project_label":"Project label cannot be empty",
+  "Select_One_DeployUnit":"Please select at least one Deploy Unit",
+  "Dashboard_Config_Updated":"Dashboard Config Updated",
+  "Dashboard_Config_Created":"Dashboard Config Created",
+  "Select_Project_label":"Select Project label",
+  "Project_Label_Key":"Project Label Key",
+  "Save_Config":"Save Config",
+  "Project_Gameservers_Table":"Project Gameservers Table",
+  "Project_Gameservers_description":"The Project GameServer Page table displays detailed information on all GameServers within a project, including server status, resource usage, and deployment details.",
+  "Project_Gameserversets_Table":"Project Gameserversets Table",
+  "Project_Gameserversets_description":"The Project GameServerSet Page table lists all GameServerSets within a project, providing insights into their deployment status, associated DeployUnits, and configuration details.",
+  "gameServerSetCount":"gameServerSetCount",
+  "gameServerCount":"gameServerCount",
+  "Projects":"projects",
+  "No_projects":"No projects",
+  "ProjectPage":"Project Page",
+  "ProjectsPage_description":"The Project Page table showcases all projects, highlighting their GameServerSets, GameServers, and associated DeployUnits for easy management and monitoring.",
+  "Project_Overview":"Project Overview",
+  "Set_NetworkDisabled":"Set NetworkDisabled"
+  
+
+
 }

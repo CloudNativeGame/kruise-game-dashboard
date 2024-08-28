@@ -7,12 +7,12 @@ import GlobalControlView from "../views/global/GlobalControlView";
 import GlobalOverview from '../components/GlobalOverview';
 import GlobalConfiguration from "../components/GlobalConfiguration";
 import DeployUnitList from "../components/DeployUnitList";
+import Resource from "../components/AddResource";
 import ProjectList from "../components/ProjectList";
 import ProjectDetailView from "../views/project/ProjectDetailView";
 import ProjectOverview from "../components/ProjectOverview";
 import ProjectGameServerSetList from "../components/ProjectGameServerSetList";
 import ProjectGameServerList from "../components/ProjectGameServerList";
-import ProjectMatchService from "../components/ProjectMatchService";
 
 export default [
     {
@@ -29,7 +29,11 @@ export default [
                 element: <GameServerSetList/>,
             },
             {
-                path: '/clusters/:name/kruise-game-dashboard/gameservers/:gameserverset?',
+                path: '/clusters/:name/kruise-game-dashboard/gameservers/',
+                element: <GameServerList/>,
+            },
+            {
+                path: '/clusters/:name/kruise-game-dashboard/gameservers/:gameserverset',
                 element: <GameServerList/>,
             },
         ]
@@ -53,6 +57,10 @@ export default [
             {
                 path: '/kruise-game-dashboard/deployunits',
                 element: <DeployUnitList/>,
+            },
+            {
+                path: '/kruise-game-dashboard/resources',
+                element: <Resource/>,
             }
         ]
     },
@@ -72,10 +80,6 @@ export default [
                 path: '/kruise-game-dashboard/projects/:projectId/gameservers',
                 element: <ProjectGameServerList/>,
             },
-            {
-                path: '/kruise-game-dashboard/projects/:projectId/matchservice',
-                element: <ProjectMatchService/>,
-            }
         ]
     },
 ];

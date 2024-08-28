@@ -2,8 +2,8 @@ apiVersion: v2
 name: frontend
 description: Frontend of kruise-game-dashboard extension.
 type: application
-version: 0.0.1
-appVersion: "0.0.1"
+version: 2.0.0
+appVersion: "2.0.0"
 home: https://openkruise.io/kruisegame/introduction
 sources:
   - https://github.com/openkruise/kruise-game

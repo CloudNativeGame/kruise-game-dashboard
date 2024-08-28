@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kruise-game-dashboard-frontend
+  labels:
+    app: kruise-game-dashboard-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kruise-game-dashboard-frontend
+  template:
+    metadata:
+      labels:
+        app: kruise-game-dashboard-frontend
+    spec:
+      containers:
+      - name: kruise-game-dashboard-frontend
+        image: registry.cn-beijing.aliyuncs.com/chrisliu95/kruise-game-dashboard-frontend:v2.0
+        ports:
+        - containerPort: 80

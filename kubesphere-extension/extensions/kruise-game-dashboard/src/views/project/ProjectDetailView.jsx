@@ -4,6 +4,10 @@ import {NavMenu, NavTitle} from "@ks-console/shared";
 import {Group} from "@kubed/icons";
 import {Outlet, useLocation, useNavigate, useParams} from "react-router-dom";
 import styled from "styled-components";
+import { LocaleProvider } from "@kube-design/components";
+import locales from "../../locales";
+
+window.locale = LocaleProvider.locale;
 
 const PageSide = styled.div`
   position: fixed;
@@ -48,18 +52,12 @@ function ProjectDetailView(props) {
                     icon: 'bird',
                     title: 'gameservers',
                 },
-                {
-                    name: 'matchservice',
-                    icon: 'bird',
-                    title: 'MatchService',
-                },
             ],
         },
     ];
 
     useEffect(() => {
         // add default location redirect to overview
-        console.log(location.p)
         if (location.pathname === prefix) {
             navigate(location.pathname + '/overview', {replace: true});
         }
@@ -67,6 +65,7 @@ function ProjectDetailView(props) {
 
     return (
         <>
+        <LocaleProvider locales={locales} >
             <KubedConfigProvider>
                 <CssBaseline/>
                 <PageSide>
@@ -81,6 +80,7 @@ function ProjectDetailView(props) {
                     <Outlet/>
                 </PageMain>
             </KubedConfigProvider>
+        </LocaleProvider>
         </>
     );
 }

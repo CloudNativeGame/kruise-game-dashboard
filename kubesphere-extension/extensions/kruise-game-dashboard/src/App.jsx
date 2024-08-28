@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import {Outlet, useLocation, useNavigate, useParams} from 'react-router-dom';
 import {NavMenu, NavTitle} from '@ks-console/shared';
 import {Group} from '@kubed/icons';
 import {CssBaseline, KubedConfigProvider} from '@kubed/components';
+import { LocaleProvider } from "@kube-design/components";
+import locales from "./locales";
 import {useEffect} from 'react';
 // import "@kube-design/components/esm/styles/index.css";
+import "@kube-design/components/esm/styles/index.scss";
 
 const PageSide = styled.div`
   position: fixed;
@@ -61,14 +64,15 @@ export default function App() {
     useEffect(() => {
         // add default location redirect to overview
         if (location.pathname === prefix) {
-            console.log('redirect to overview')
             navigate(location.pathname + "/overview", {replace: true});
         }
+
     }, []);
 
 
     return (
         <>
+        <LocaleProvider locales={locales} ignoreWarnings>
             <KubedConfigProvider>
                 <CssBaseline/>
                 <PageSide>
@@ -83,6 +87,7 @@ export default function App() {
                     <Outlet/>
                 </PageMain>
             </KubedConfigProvider>
+        </LocaleProvider>
         </>
     );
 

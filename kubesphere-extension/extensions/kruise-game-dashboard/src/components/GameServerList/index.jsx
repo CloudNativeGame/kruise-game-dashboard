@@ -39,8 +39,8 @@ function GameServerList(props) {
     const [fieldValue, setFieldValue] = useState("");
     const [gsName, setGsName] = useState("");
     const [gsNamespace, setGsNamespace] = useState("");
-    const [totaldata,settotaldata]=useState(0)
-    
+    const [totaldata,setTotalData]=useState(0)
+
 
     const openModal = (gsName, gsNamespace)  => {
         setVisible(true);
@@ -68,21 +68,23 @@ function GameServerList(props) {
                 }
             }
         );
-
-        console.log("Successfully updated the field: ", response.data);
         setVisible(false)
     };
 
     useEffect(async ()=>{
         try {
             const response = await axios.get('/clusters/' + clusterId + `/apis/game.kruise.io/v1alpha1/gameservers?${Gameserverset&&`labelSelector=game.kruise.io/owner-gss%3D${Gameserverset}`}`);
-            settotaldata(response.items.length)
+            if (response.items !== undefined) {
+                setTotalData(response.items.length);
+              } else {
+                setTotalData(response.data.items.length);
+              }
         } catch (error) {
             console.error('Error fetching game servers:', error);
         }
 
     },[Gameserverset])
-    
+
     const renderItemActions = useItemActions({
         authKey,
         params: "", // 传递给操作函数的参数
@@ -109,10 +111,10 @@ function GameServerList(props) {
     });
 
     function handleFilterInputChange() {
-        console.log("input change")
+        // console.log("input change")
     }
 
-    
+
     function formatServerData(data) {
         const newContinueToken = data.metadata.continue;
         if (newContinueToken && continueStackRef.current[continueStackRef.current.length - 1] !== newContinueToken) {
@@ -337,7 +339,7 @@ function GameServerList(props) {
     function renderBatchActions(){
 
     }
-    
+
 
     function getItems(items) {
         const kvs = []
@@ -356,7 +358,7 @@ function GameServerList(props) {
             return kvs
         }
     }
- 
+
 
     function getImages(items) {
         const kvs = []
@@ -404,15 +406,15 @@ function GameServerList(props) {
                 visible={visible}
                 onCancel={closeModal}
                 onOk={handleClick}
-            > 
+            >
                 <AutoComplete placeholder="设置opsState..." style={{ width: "100%" }} options={[{ value: "WaitToBeDeleted" },{ value:"None" },{ value: "Allocated" },{ value: "Maintaining" },{ value: "Kill" } ]}  onChange={(data) => setFieldValue(data)}/>
             </Modal>
 
             <Banner
                 className="mb12"
                 icon={<Icon name="appcenter" size={40}/>}
-                title={t("gameservers")}
-                description={t("gameservers_description")}
+                title={t("Gameservers Table")}
+                description={t("The GameServer Page table displays detailed information on all GameServers within a cluster, including server status, resource usage, and deployment details.")}
             />
             <DataTable
                 ref={tableRef}

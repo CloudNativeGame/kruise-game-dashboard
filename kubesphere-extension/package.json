@@ -121,7 +121,7 @@
     "react-dom": "^17.0.2",
     "react-query": "^3.32.1",
     "react-refresh": "^0.10.0",
-    "react-router-dom": "6.11.2",
+    "react-router-dom": "^6.26.1",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",
     "shelljs": "^0.8.4",
@@ -158,6 +158,9 @@
     "@kubed/log-viewer": "^0.0.17",
     "@kubed/stook": "^0.0.4",
     "create-ks-project": "^0.0.23",
-    "global": "^4.4.0"
+    "file-saver": "^2.0.5",
+    "global": "^4.4.0",
+    "js-yaml": "^4.1.0",
+    "react-file-reader": "^1.1.4"
   }
 }

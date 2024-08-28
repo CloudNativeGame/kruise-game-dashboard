@@ -284,8 +284,8 @@ function GameServerSetList(props) {
             <Banner
                 className="mb12"
                 icon={<Icon name="appcenter" size={40}/>}
-                title={t("gameserversets")}
-                description={t("gameserversets_description")}
+                title={t("GameserverSets Table")}
+                description={t("The GameServerSet Page table displays detailed information on all GameServerSet within a cluster, including server status, resource usage, and deployment details.")}
             />
             <DataTable
                 ref={tableRef}
